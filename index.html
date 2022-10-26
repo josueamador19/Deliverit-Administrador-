@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Deliverit | Home</title>
+    <link rel="apple-touch-icon" href="/assets/logo.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#E7EFF8" />
+    <meta name="theme-color" content="#E7EFF8"/>
+    <link rel="shortcut icon" href="/assets/logo.png"" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Lexend&family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/theme.css">
+    <script src="/assets/fontAwesome/js/all.js"></script>
+    <link rel="stylesheet" href="/assets/css/index.css">
+</head>
+<body>
+    <main>
+        <div class="dividerMain">
+            <div class="header row center-y">
+                <div class="leftH row">
+                    <div class="logo row center-y">
+                        <img height="40%" src="/assets/img/logo.svg" alt="">
+                        <h3 class="deliver">Deliver<span class="nameit">it</span></h3>
+                    </div>
+                    <div class="menuButton row center-y">
+                        <i onclick="clickMenu();" class="fa-solid fa-bars btnIcon"></i>
+                        <h4 id="title">Dashboard</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="bodymain">
+                <div class="sideMenu col">
+                    <div class="itemListSide row sideActive  center-y">
+                        <i class="fa-solid iconSide fa-rocket"></i>
+                        <span>Dashboard</span>
+                    </div>
+                    <div class="itemListSide row center-y">
+                        <i class="fa-regular iconSide fa-rectangle-list"></i>
+                        <span>Orders</span>
+                    </div>
+                    <div class="itemListSide row center-y">
+                        <i class="fa-solid iconSide fa-people-group"></i>
+                        <span>Customers</span>
+                    </div>
+                    <div class="itemListSide row center-y">
+                        <i class="fa-solid iconSide fa-store"></i>
+                        <span>Stores</span>
+                    </div>
+                </div>
+                <div class="frames">
+                    <iframe id="Dashboard" class="frameActive" src="/dashboard.html" frameborder="0"></iframe>
+                    <iframe id="Orders" src="/orders.html" frameborder="0"></iframe>
+                    <iframe id="Customers" src="/customers.html" frameborder="0"></iframe>
+                    <iframe id="Stores" src="/stores.html" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    
+
+
+    <script src="/assets/js/cash.min.js"></script>
+    <script src="/assets//js/jquery.js"></script>
+    <script src="/assets/js/index.js"></script>
+</body>
+</html>
