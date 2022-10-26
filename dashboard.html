@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Deliverit | Admin</title>
+    <link rel="apple-touch-icon" href="/assets/logo.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#E7EFF8" />
+    <meta name="theme-color" content="#E7EFF8"/>
+    <link rel="shortcut icon" href="/assets/logo.png"" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Lexend&family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/theme.css">
+    <script src="/assets/fontAwesome/js/all.js"></script>
+    <style>
+        .colorram {
+            color: #3648ce70;
+        }
+        .Chart {
+            background-color: #fff;
+            border-radius: 10px;
+            margin: 4px;
+            box-sizing: border-box;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="chart-container" style="position: relative; height:25vh; width:50vw">
+            <canvas id="myChart" class="Chart"></canvas>
+        </div>
+        <div class="chart-container" style="position: relative; height:25vh; width:25vw">
+            <canvas id="myChartPie" class="Chart"></canvas>
+        </div>
+    </div>
+
+    <script src="/assets/js/cash.min.js"></script>
+    <script src="/assets/js/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        //line
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'Octuber',
+            'November',
+            'December'
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+            label: 'annual sales',
+            backgroundColor: '#3648ce70',
+            borderColor: '#3648CE',
+            borderWidth: 3,
+            fill: 'start',
+            tension: 0.01,
+            data: [5, 10, 5, 2, 20, 30, 45, 30, 40, 39, 20, 55],
+            }],
+        };
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    
+                },
+                interaction: {
+                    intersect: false,
+                }
+            }
+        };
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+        
+        //pie
+        const ctxPie = document.getElementById('myChartPie').getContext('2d');
+        const dataPie = {
+            labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+            datasets: [
+                {
+                label: 'Dataset 1',
+                data: [10, 8, 7, 3, 2],
+                backgroundColor: [
+                    '#FF6384',
+                    '#FF9F40',
+                    '#FFC234',
+                    '#4BC0C0',
+                    '#36A2EB',
+                ],
+                }
+            ]
+        };
+        const configPie = {
+            type: 'pie',
+            data: dataPie,
+            options: {
+                responsive: true,
+                plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Best Stores'
+                }
+                }
+            },
+        };
+        const myChartPie = new Chart(
+            document.getElementById('myChartPie'),
+            configPie
+        );
+    </script>
+</body>
+</html>

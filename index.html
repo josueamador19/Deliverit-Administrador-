@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
-    <link rel="stylesheet" href="/assets/css/index.css">
     <title>Deliverit | Home</title>
     <link rel="apple-touch-icon" href="/assets/logo.png" />
     <meta name="apple-mobile-web-app-status-bar" content="#E7EFF8" />
@@ -15,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Jua&family=Lexend&family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/theme.css">
     <script src="/assets/fontAwesome/js/all.js"></script>
+    <link rel="stylesheet" href="/assets/css/index.css">
 </head>
 <body>
     <main>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="menuButton row center-y">
                         <i onclick="clickMenu();" class="fa-solid fa-bars btnIcon"></i>
-                        <h4>Dashboard</h4>
+                        <h4 id="title">Dashboard</h4>
                     </div>
                 </div>
             </div>
@@ -47,11 +47,14 @@
                     </div>
                     <div class="itemListSide row center-y">
                         <i class="fa-solid iconSide fa-store"></i>
-                        <span>Store</span>
+                        <span>Stores</span>
                     </div>
                 </div>
-                <div class="frame">
-                    <iframe src="/plantilla.html" frameborder="0"></iframe>
+                <div class="frames">
+                    <iframe id="Dashboard" class="frameActive" src="/dashboard.html" frameborder="0"></iframe>
+                    <iframe id="Orders" src="/orders.html" frameborder="0"></iframe>
+                    <iframe id="Customers" src="/customers.html" frameborder="0"></iframe>
+                    <iframe id="Stores" src="/stores.html" frameborder="0"></iframe>
                 </div>
             </div>
         </div>

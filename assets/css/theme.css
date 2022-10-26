@@ -11,10 +11,12 @@ html, body {
 .row {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .col {
-    flex: 1 0 0%;
+    display: flex;
+    flex-direction: column;
 }
 
 .w100 {

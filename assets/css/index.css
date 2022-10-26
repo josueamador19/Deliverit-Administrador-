@@ -31,7 +31,7 @@ main {
 
 .sideMenu {
     padding-top: 25px;
-    height: 100%;
+    height: calc(100% - 56px);
     width: 170px;
     overflow: hidden;
     transition: width 0.3s;
@@ -47,14 +47,21 @@ main {
     outline: 1px solid red;
 }
 
-.frame {
-    height: 100%;
+.frames {
     border-radius: 10px;
     background-color: #E7EFF8;
     overflow: hidden;
+    height: calc(100% - 56px);
 }
-.frame iframe {
+.frames iframe {
     margin: 10px;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.frames .frameActive {
+    display: block !important;
 }
 
 .itemListSide {
