@@ -51,7 +51,7 @@ main {
     border-radius: 10px;
     background-color: #E7EFF8;
     overflow: hidden;
-    height: calc(100% - 56px);
+    height: calc(100% - 0px);
 }
 .frames iframe {
     margin: 10px;
