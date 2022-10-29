@@ -92,3 +92,148 @@ td {
 
 tr:nth-child(even) {background-color: #f2f2f2;}
 tr:nth-child(even):hover {background-color: #3648ce1c;}
+
+#modalStore,#modalPr {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color: #00002c3f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.cardMP, .cardproduct {
+    width: 80%;
+    height: 90%;
+    background-color: #fff;
+    display: flex;
+    padding-top: 32px !important;
+    padding: 16px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    position: relative;
+    
+}
+
+#logoPr, #bannerPr {
+    width: 100% !important;
+}
+
+.col2 {
+    margin-left: 8px;
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+}
+
+
+#products {
+    width: 100%;
+    margin-top: 8px;
+    box-sizing: border-box;
+    height: 100%;
+    position: relative;
+    margin-bottom: 16px;
+    max-height: 100%;
+}
+
+.gridjs-th, .gridjs-footer, .gridjs-input{
+    padding: 4px !important;
+}
+
+.gridjs-td{
+    padding: 2px 4px !important;
+}
+
+.gridjs-container{
+    height: 100% !important;
+}
+
+.dataTableCS{
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 1; /* number of lines to show */
+           line-clamp: 1; 
+   -webkit-box-orient: vertical;
+}
+
+.btnAct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tablePr {
+    width: 100%;
+}
+
+.dataProducts {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    justify-content: space-between;
+}
+
+.editBtn {
+    background-color: #3648CE;
+    color: #fff;
+}
+
+.closeModalPr {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.bdPr {
+    width: 100%;
+    
+}
+.dataPr {
+    box-sizing: border-box;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 4px 0px;
+}
+
+#preview {
+    width: 20%;
+}
+
+
+.btns {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btns button:nth-child(1) {
+    background-color: #DC3B45;
+    color: #fff;
+    margin: 0 4px;
+}
+.btns button:nth-child(2) {
+    background-color: #4AA746;
+    color: #fff;
+    margin: 0 4px;
+}
+
+#modalPr{
+    z-index: 5;
+}
+
+.cardproduct{
+    width: 70%;
+    height: fit-content;
+}
+
+#previewPr{
+    max-width: 80%;
+    width: auto;
+    height: auto;
+}
