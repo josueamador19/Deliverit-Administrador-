@@ -12,17 +12,21 @@ let categories = ['Restaurants', 'Supermarket', 'Drinks', 'Health', 'Tech'];
 
     for (let i = 0; i < 10; i++) {
         const prts = []
+        let sumSales = 0;
+
         for (let j = 0; j < Math.floor(Math.random() * 10)+1; j++) {
+            let sales = Math.floor(Math.random() * 1000);
             prts.push({
                 name: 'Product '+ (j+1),
-                price: Math.random() * 100,
-                sales: Math.random() * 1000
-            })
+                price: Number(Math.random() * 100).toFixed(2),
+                sales: sales
+            });
+            sumSales+=sales;
         }
         dataStore.push({
             name:'Store '+i,
             category:categories[Math.floor(Math.random() * 5)],
-            sales: Math.floor(Math.random() * 1000),
+            sales: sumSales,
             products: prts
         })
     }
@@ -46,6 +50,9 @@ let categories = ['Restaurants', 'Supermarket', 'Drinks', 'Health', 'Tech'];
 
 function searchStore() {
     const textInput = $('#searchStore').val();
+    if (textInput == '') {
+        return
+    }
     $('#tableStoresBody').html('');
     dataStore.forEach((store, ind) => {
         if (

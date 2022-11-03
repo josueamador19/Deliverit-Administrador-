@@ -5,7 +5,6 @@ html, body {
     font-family: 'Noto Sans JP', sans-serif;
     margin: 0;
     color: #00002C;
-    user-select: none;
 }
 
 .row {
