@@ -4,11 +4,14 @@ var catSelect = "Show all";
 let categories = ['Restaurants', 'Supermarket', 'Drinks', 'Health', 'Tech'];
 
 (async ()=>{
-    categories.forEach(category => {
+    categories.forEach((category, indexCat) => {
         $('#categoriesContainer').append(
-            '<button class="btn" onclick="filterSelection(this)">'+category+'</button>'
+            '<button class="btn" id="indexCat'+indexCat+'" onclick="filterSelection(this)">'+category+'</button>'
         );
     });
+    $('#categoriesContainer').append(
+        '<button class="btn addCat" onclick="openCatModal()"><i class="fa-solid fa-plus"></i></button>'
+    );
 
     for (let i = 0; i < 10; i++) {
         const prts = []
@@ -55,9 +58,7 @@ function searchStore() {
     }
     $('#tableStoresBody').html('');
     dataStore.forEach((store, ind) => {
-        if (
-            (store['category'] === catSelect || catSelect === "Show all".trim()) && 
-            (store['name'].toLowerCase().includes(textInput.toLowerCase()))) {
+        if ((store['name'].toLowerCase().includes(textInput.toLowerCase()))) {
             $('#tableStoresBody').append(
                 `<tr>
                 <td>${store['name']}</td>
@@ -101,7 +102,7 @@ function viewModalPro(store) {
             },
             {
                 name: 'Price',
-                formatter: (cell) => gridjs.html(`<span class="dataTableCS">${cell}</span>`)
+                formatter: (cell) => gridjs.html(`<span class="dataTableCS">$${cell}</span>`)
             },
             {
                 name: 'Sales',
@@ -113,18 +114,13 @@ function viewModalPro(store) {
             },
         ],
         search: true,
-        pagination: {
-            enabled: true,
-            limit: 4,
-            summary: false
-        },
         data: productsData,
         style: {
             td: {
               border: '1px solid #ccc'
             },
             table: {
-              'width': '100%'
+              'width': '99%'
             }
           }
       });
@@ -154,3 +150,27 @@ function filterSelection(filter) {
     });
 
 }
+
+function openCatModal() {
+    $('#modalAddCat').css('display', 'flex');
+}
+function closeCatModal() {
+    $('#modalAddCat').css('display', 'none');
+}
+
+function addCat() {
+    const nameCat = $('#nameCatAdd').val();
+    if (nameCat == '') {
+        return
+    }
+    categories.push(nameCat);
+    $('.addCat').remove();
+    $('#categoriesContainer').append(
+        '<button class="btn" onclick="filterSelection(this)">'+nameCat+'</button>'
+    );
+    $('#categoriesContainer').append(
+        '<button class="btn addCat" onclick="openCatModal()"><i class="fa-solid fa-plus"></i></button>'
+    );
+    closeCatModal();
+}
+

@@ -21,6 +21,12 @@
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
 </head>
 <body>
+    <div id="modalAddCat">
+        <div class="card col">
+            <input type="text" id="nameCatAdd" placeholder="name">
+            <button onclick="addCat()" class="btn AC">Add Category</button>
+        </div>
+    </div>
     <div id="modalPr">
         <div class="cardproduct">
             <div class="closeModalPr">
@@ -115,7 +121,13 @@
         </div>
         
         <div id="body">
-            <h3>Stores</h3>
+            <div class="row storesHeaderCS">
+                <h3>Stores</h3>
+                <div class="row">
+                    <button class="btn DLCat">Delete Category</button>
+                    <button class="btn addStoreBtn">Add Store</button>
+                </div>
+            </div>
 
             <table id="tableStores" class="tableStores">
                 <thead>
