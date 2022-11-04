@@ -93,7 +93,6 @@ function viewModalPro(store) {
     dataStore[ind]['products'].forEach((products, index) => {
         productsData.push([products.name, products.price, products.sales, index])
     })
-    console.log(productsData);
     const grid = new gridjs.Grid({
         columns: [
             {

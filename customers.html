@@ -13,15 +13,71 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&family=Lexend&family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/theme.css">
+    <link rel="stylesheet" href="/assets/css/customers.css">
     <script src="/assets/fontAwesome/js/all.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
 </head>
 <body>
-    <div class="deliver">Deliver
-        <span class="nameit">it</span>
+    <div id="modalOrders">
+        <div class="card">
+            <div onclick="$('#modalOrders').css('display', 'none')" class="iconClose">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <center class="id">ID order: <span id="IDOrder"></span></center>
+            <center class="id">Status: <span id="statusOrder"></span></center>
+            <label for="roundsman">roundsman</label>
+            <div class="row HDinfoCustomer">
+                <div class="row">
+                    <label for="nameroundsman">name:</label>
+                    <label id="nameroundsman"></label>
+                </div>
+                <div class="row">
+                    <label for="telroundsman">Tel:</label>
+                    <label id="telroundsman"></label>
+                </div>
+            </div>
+            <div class="orderProducts">
+                <div id="orderProducts"></div>
+            </div>
+        </div>
     </div>
-    <span>customers
-    </span>
+    <div id="modalCustomer">
+        <div class="card col">
+            <div onclick="$('#modalCustomer').css('display', 'none')" class="iconClose">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <center class="id">ID client: <span id="ID">9781233</span></center>
+            <div class="row HDinfoCustomer">
+                <div class="row">
+                    <label for="nameCustomer">Name:</label>
+                    <input type="text" id="nameCustomer">
+                </div>
+                <div class="row">
+                    <label for="emailCustomer">Email:</label>
+                    <input type="text" id="emailCustomer">
+                </div>
+            </div>
+            <div class="orders">
+                <h3>Orders</h3>
+                <div id="orders"></div>
+            </div>
+            <div class="btns">
+                <button class="btn">Delete</button>
+                <button class="btn">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="filters col">
+            <h4>Customer Search</h4>
+        </div>
+        
+        <div id="table"></div>
+    </div>
+
     <script src="/assets/js/cash.min.js"></script>
     <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/customers.js"></script>
 </body>
 </html>
