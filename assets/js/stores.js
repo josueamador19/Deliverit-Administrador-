@@ -73,58 +73,69 @@ function searchStore() {
 }
 
 let indexStore=0;
+let indexProduct=0;
 
 function viewModalPr(product) {
-    console.log('index ',$(product).attr('data-product'));
     $('#modalPr').css('display', 'flex');
     const ind = $(product).attr('data-product');
+    indexProduct = ind
     $('#namePrt').val(dataStore[indexStore]['products'][ind]['name']);
     $('#pricePr').val(dataStore[indexStore]['products'][ind]['price']);
 }
 
 function viewModalPro(store) {
     $('#modalStore').css('display', 'flex');
-    const ind = $(store).attr('data-store');
-    indexStore = ind;
-    $('#namePr').val(dataStore[ind]['name']);
-    $('#catPr').val(dataStore[ind]['category']);
-    $('#products').html('');
-    const productsData = []
-    dataStore[ind]['products'].forEach((products, index) => {
-        productsData.push([products.name, products.price, products.sales, index])
+    $('.AP').css('display', 'none');
+    $('#categoriesStore').html('')
+    $('#products').html('')
+    categories.forEach(cat =>{
+        $('#categoriesStore').append(`<option value="${cat}">${cat}</option>`)
     })
-    const grid = new gridjs.Grid({
-        columns: [
-            {
-                name: 'Name',
-                formatter: (cell) => gridjs.html(`<span class="dataTableCS">${cell}</span>`)
-            },
-            {
-                name: 'Price',
-                formatter: (cell) => gridjs.html(`<span class="dataTableCS">$${cell}</span>`)
-            },
-            {
-                name: 'Sales',
-                formatter: (cell) => gridjs.html(`<span class="dataTableCS">${cell}</span>`)
-            },
-            {
-                name: 'Actions',
-                formatter: (_, row) => gridjs.html(`<div class="btnAct"><button onclick="viewModalPr(this)" data-product="${row.cells[3].data}" class="btn editBtn"><i class="fa-solid fa-pen-to-square"></i></button></div>`)
-            },
-        ],
-        search: true,
-        data: productsData,
-        style: {
-            td: {
-              border: '1px solid #ccc'
-            },
-            table: {
-              'width': '99%'
+    indexStore=null
+    if (store != null) {
+        $('.AP').css('display', 'block');
+        const ind = $(store).attr('data-store');
+        indexStore = ind;
+        $('#namePr').val(dataStore[ind]['name']);
+        $("#categoriesStore").val(dataStore[ind]['category']);
+        const productsData = []
+        dataStore[ind]['products'].forEach((products, index) => {
+            productsData.push([products.name, products.price, products.sales, index])
+        })
+        const grid = new gridjs.Grid({
+            columns: [
+                {
+                    name: 'Name',
+                    formatter: (cell) => gridjs.html(`<span class="dataTableCS">${cell}</span>`)
+                },
+                {
+                    name: 'Price',
+                    formatter: (cell) => gridjs.html(`<span class="dataTableCS">$${cell}</span>`)
+                },
+                {
+                    name: 'Sales',
+                    formatter: (cell) => gridjs.html(`<span class="dataTableCS">${cell}</span>`)
+                },
+                {
+                    name: 'Actions',
+                    formatter: (_, row) => gridjs.html(`<div class="btnAct"><button onclick="viewModalPr(this)" data-product="${row.cells[3].data}" class="btn editBtn"><i class="fa-solid fa-pen-to-square"></i></button></div>`)
+                },
+            ],
+            search: true,
+            data: productsData,
+            style: {
+                td: {
+                border: '1px solid #ccc'
+                },
+                table: {
+                'width': '99%'
+                }
             }
-          }
-      });
-    grid.render(document.getElementById("products"));
-    grid.forceRender();
+        });
+        grid.render(document.getElementById("products"));
+        grid.forceRender();
+    }
+    
 }
 
 
@@ -173,3 +184,83 @@ function addCat() {
     closeCatModal();
 }
 
+function viewDeleteCatModal() {
+    if ($('.activeCat').html().trim() === 'Show all'.trim()) {
+        return;
+    }
+    $('#nameCatDelete').html($('.activeCat').html())
+    $('#modalDeleteCat').css('display', 'flex');
+}
+
+function deleteCategory() {
+    dataStore.forEach((store, i) => {
+        if(store.category === $('.activeCat').html()){
+            dataStore.splice(i, 1);
+        }
+    })
+    const index = categories.indexOf($('.activeCat').html());
+    categories.splice(index, 1);
+    $('.activeCat').remove();
+    $('.SA').addClass('activeCat');
+    filterSelection($('.SA'))
+    $('#modalDeleteCat').css('display', 'none');
+}
+
+function saveEditStore() {
+    if (indexStore == null) {
+        dataStore.push({
+            name:$('#namePr').val(),
+            category:$("#categoriesStore").val(),
+            sales: 0,
+            products: []
+        })
+    }else{
+        dataStore[indexStore]['name'] = $('#namePr').val();
+        dataStore[indexStore]['category'] = $('#categoriesStore').val();
+    }
+    $('#modalStore').css('display', 'none');
+    filterSelection($('.activeCat'))
+}
+
+function saveProduct() {
+    dataStore[indexStore]['products'][indexProduct]['name'] =  $('#namePrt').val();
+    dataStore[indexStore]['products'][indexProduct]['price'] =  $('#pricePr').val();
+    const productsData = []
+        dataStore[indexStore]['products'].forEach((products, index) => {
+            productsData.push([products.name, products.price, products.sales, index])
+        })
+        const grid = new gridjs.Grid({
+            columns: [
+                {
+                    name: 'Name',
+                    formatter: (cell) => gridjs.html(`<span class="dataTableCS">${cell}</span>`)
+                },
+                {
+                    name: 'Price',
+                    formatter: (cell) => gridjs.html(`<span class="dataTableCS">$${cell}</span>`)
+                },
+                {
+                    name: 'Sales',
+                    formatter: (cell) => gridjs.html(`<span class="dataTableCS">${cell}</span>`)
+                },
+                {
+                    name: 'Actions',
+                    formatter: (_, row) => gridjs.html(`<div class="btnAct"><button onclick="viewModalPr(this)" data-product="${row.cells[3].data}" class="btn editBtn"><i class="fa-solid fa-pen-to-square"></i></button></div>`)
+                },
+            ],
+            search: true,
+            data: productsData,
+            style: {
+                td: {
+                border: '1px solid #ccc'
+                },
+                table: {
+                'width': '99%'
+                }
+            }
+        });
+        $('#products').html('')
+        grid.render(document.getElementById("products"));
+        grid.forceRender();
+        $('#modalPr').css('display', 'none');
+}

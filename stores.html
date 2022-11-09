@@ -21,8 +21,20 @@
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
 </head>
 <body>
+    <div id="modalDeleteCat">
+        <div class="card col">
+            <div class="closeModalPr">
+                <i onclick="$('#modalDeleteCat').css('display', 'none');" class="fa-solid fa-xmark"></i>
+            </div>
+            <span id="nameCatDelete"></span>
+            <button onclick="deleteCategory()" class="btn AC">Delete Category</button>
+        </div>
+    </div>
     <div id="modalAddCat">
         <div class="card col">
+            <div class="closeModalPr">
+                <i onclick="$('#modalAddCat').css('display', 'none');" class="fa-solid fa-xmark"></i>
+            </div>
             <input type="text" id="nameCatAdd" placeholder="name">
             <button onclick="addCat()" class="btn AC">Add Category</button>
         </div>
@@ -39,8 +51,8 @@
                         <input id="namePrt" type="text">
                     </div>
                     <div class="sc">
-                        <label for="Category">Price:</label>
-                        <input id="pricePr" type="text">
+                        <label for="Category">Price: $</label>
+                        <input id="pricePr" type="number">
                         
                     </div>
                 </div>
@@ -56,7 +68,7 @@
                 </div>
                 <div class="btns">
                     <button class="btn">Delete</button>
-                    <button class="btn">Save</button>
+                    <button onclick="saveProduct()" class="btn">Save</button>
                 </div>
             </div>
         </div>
@@ -74,7 +86,9 @@
                     </div>
                     <div class="sc">
                         <label for="Category">Category:</label>
-                        <input id="catPr" type="text">
+                        <select name="categoriesStore" id="categoriesStore">
+                            <option value=""></option>
+                        </select>
                         
                     </div>
                 </div>
@@ -96,9 +110,10 @@
                     </div>
                 </div>
                 <div id="products"></div>
-                <div class="btns">
+                <div class="btnsStore">
+                    <button onclick="viewModalPr(null)" class="btn AP">Add product</button>
                     <button class="btn">Delete</button>
-                    <button class="btn">Save</button>
+                    <button onclick="saveEditStore()" class="btn">Save</button>
                 </div>
             </div>
             
@@ -114,7 +129,7 @@
             <div class="categories">
                 <h5>Category</h5>
                 <div id="categoriesContainer" class="row">
-                    <button class="btn activeCat" onclick="filterSelection(this)"> Show all</button>
+                    <button class="btn activeCat SA" onclick="filterSelection(this)"> Show all</button>
                     
                   </div>
             </div>
@@ -124,8 +139,8 @@
             <div class="row storesHeaderCS">
                 <h3>Stores</h3>
                 <div class="row">
-                    <button class="btn DLCat">Delete Category</button>
-                    <button class="btn addStoreBtn">Add Store</button>
+                    <button onclick="viewDeleteCatModal()" class="btn DLCat">Delete Category</button>
+                    <button onclick="viewModalPro(null)" class="btn addStoreBtn">Add Store</button>
                 </div>
             </div>
 
