@@ -19,21 +19,72 @@
             color: #3648ce70;
         }
         .Chart {
-            background-color: #fff;
-            border-radius: 10px;
-            margin: 4px;
+            border-radius: 20px;
             box-sizing: border-box;
         }
-        
+        .chart-container {
+            height: min-content;
+            border-radius: 20px;
+            border-radius: 50px;
+            background: #e0e0e0;
+            box-shadow:  20px 20px 60px #bebebe,
+                        -20px -20px 60px #ffffff;
+        }
+        .data-container{
+            margin-top: 16px !important;
+            padding-bottom: 20px;
+            position: relative; 
+            width:37vw;
+            background-color: #fff;
+            margin: 1%;
+            box-sizing: border-box;
+            text-align: center;
+            border-radius: 20px;
+            border-radius: 50px;
+            background: #e0e0e0;
+            box-shadow:  20px 20px 60px #bebebe,
+                        -20px -20px 60px #ffffff;
+        }
+        .item {
+            margin: 4px 20px;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.233);
+        }
+        .fa-heart-circle-check {
+            color: rgb(146, 0, 0);
+            font-size: 1.4rem;
+        }
+        .fa-user {
+            color: #3648ce;
+            font-size: 1.4rem;
+        }
+        .item > .col {
+            margin-left: 16px;
+            text-align: left;
+            flex: 4;
+        }
     </style>
 </head>
 <body>
-    <div class="row">
-        <div class="chart-container" style="position: relative; height:25vh; width:50vw">
+    <div class="row" style="justify-content: space-around;">
+        <div class="chart-container" style="position: relative; width:50vw">
             <canvas id="myChart" class="Chart"></canvas>
         </div>
-        <div class="chart-container" style="position: relative; height:25vh; width:25vw">
+        <div class="chart-container" style="position: relative; width:25vw">
             <canvas id="myChartPie" class="Chart"></canvas>
+        </div>
+    </div>
+    <div class="row" style="justify-content: space-around;">
+        <div class="data-container">
+            <h3>Top Products</h3>
+            <div id="products">
+                
+            </div>
+        </div>
+        <div class="data-container">
+            <h3>Top Delivery man</h3>
+            <div id="DM">
+            </div>
         </div>
     </div>
 
@@ -133,6 +184,44 @@
             document.getElementById('myChartPie'),
             configPie
         );
+        let productsTOP = [];
+        let dealerTOP = [];
+        for (let i = 5; i > 0; i--) {
+            productsTOP.push({
+                name: 'product '+i,
+                data: 'data',
+                sales: Math.floor(Math.random()*i)+i*20
+            })
+            dealerTOP.push({
+                name: 'name '+i,
+                data: 'data',
+                ship: Math.floor(Math.random()*i)+i*10
+            })
+        }
+        productsTOP.forEach(product => {
+            $('#products').append(
+                `<div class="item row center-y">
+                    <i class="fa-solid fa-heart-circle-check"></i>
+                    <div class="col">
+                        <strong>${product.name}</strong>
+                        <span>${product.data}</span>
+                    </div>
+                    <span>${product.sales}</span>
+                </div>`
+            )
+        });
+        dealerTOP.forEach(dealer => {
+            $('#DM').append(
+                `<div class="item row center-y">
+                    <i class="fa-solid fa-user"></i>
+                    <div class="col">
+                        <strong>${dealer.name}</strong>
+                        <span>${dealer.data}</span>
+                    </div>
+                    <span>${dealer.ship}</span>
+                </div>`
+            )
+        });
     </script>
 </body>
 </html>
