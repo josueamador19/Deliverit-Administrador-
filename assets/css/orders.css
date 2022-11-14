@@ -1,0 +1,144 @@
+.container{
+    padding: 0 16px;
+}
+
+.filter {
+    background: #fff;
+    border-radius: 10px;
+    margin: 4px 8px;
+    padding: 8px 32px;
+    align-items: center;
+    
+}
+
+.active {
+    box-shadow:  0px 12px 24px -5px #b8b8b8;
+}
+
+.filter:hover{
+    cursor: pointer;
+    background: rgb(220, 220, 220);
+}
+
+.filter:active {
+    transform: scale(0.8);
+}
+
+.icon {
+    padding: 8px;
+    margin-right: 8px;
+    border-radius: 50%;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon1{
+    background-color: #fff59d;
+    color: #f9a825;
+}
+.icon2{
+    background-color: #81d4fa;
+    color: #0277bd;
+}
+.icon3{
+    background-color: #ef9a9a;
+    color: #c62828;
+}
+.icon4{
+    background-color: #a5d6a7;
+    color: #2e7d32;
+}
+
+.filter > .row > .col > span:nth-child(1){
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.filter > .row > .col > span:nth-child(2){
+    font-size: 0.8rem;
+    font-weight: lighter;
+}
+
+table {
+    margin-top: 32px;
+    width: 100%;
+}
+
+th {
+    padding: 8px 4px;
+    text-align: left;
+}
+
+tr {
+    outline: 1px solid rgb(209, 209, 209);
+    background-color: #fff;
+}
+
+tr:hover {background-color: #3648ce1c;}
+
+td {
+    word-wrap: break-word;
+    padding: 8px 4px;
+    vertical-align: center;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(even):hover {background-color: #3648ce1c;}
+
+.btn{
+    border: none;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+#modalOrder{
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.212);
+    align-items: center;
+    justify-content: center;
+}
+#modalOrder > .card {
+    background-color: #fff;
+    padding: 16px;
+    width: 70%;
+    height: 80%;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.close{
+    position: absolute;
+    right: 16px;
+    cursor: pointer;
+}
+.bdInfo {
+    width: 100%;
+    justify-content: space-evenly;
+}
+.bdInfo > .col {
+    width: 30%;
+    border: 1px solid #b8b8b8;
+    border-radius: 10px;
+    padding: 4px 16px;
+}
+#mapa {
+    width: 50%;
+}
+#SR {
+    font-size: 0.7rem;
+    width: fit-content !important;
+    max-width: 50%;
+}
+.assigRoundsman {
+    display: none;
+}

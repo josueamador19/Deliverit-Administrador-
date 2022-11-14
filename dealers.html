@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Deliverit | Dealers</title>
+    <link rel="apple-touch-icon" href="/assets/logo.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#E7EFF8" />
+    <meta name="theme-color" content="#E7EFF8"/>
+    <link rel="shortcut icon" href="/assets/logo.png"" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Lexend&family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/theme.css">
+    <link rel="stylesheet" href="/assets/css/dealers.css">
+    <script src="/assets/fontAwesome/js/all.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+</head>
+<body>
+    <div id="modalOrders">
+        <div class="card">
+            <div onclick="$('#modalOrders').css('display', 'none')" class="iconClose">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <center class="id">ID order: <span id="IDOrder"></span></center>
+            <center class="id">Status: <span id="statusOrder"></span></center>
+            <label for="client">Client</label>
+            <div class="row HDinfoCustomer">
+                <div class="row">
+                    <label for="nameclient">name:</label>
+                    <label id="nameclient"></label>
+                </div>
+                <div class="row">
+                    <label for="telclient">Tel:</label>
+                    <label id="telclient"></label>
+                </div>
+            </div>
+            <div class="orderProducts">
+                <div id="orderProducts"></div>
+            </div>
+        </div>
+    </div>
+    <div id="modalDealers">
+        <div class="card col">
+            <div onclick="$('#modalDealers').css('display', 'none')" class="iconClose">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <center class="id">ID roundsman: <span id="ID">9781233</span></center>
+            <div class="row HDinfoCustomer">
+                <div class="row">
+                    <label for="nameroundsman">Name:</label>
+                    <input type="text" id="nameroundsman">
+                </div>
+                <div class="row">
+                    <label for="telCustomer">Tel:</label>
+                    <input type="text" id="Telroundsman">
+                </div>
+                <div class="row">
+                    <label for="emailCustomer">Email:</label>
+                    <input type="text" id="emailroundsman">
+                </div>
+            </div>
+            <div class="orders">
+                <h3>Orders</h3>
+                <div id="orders"></div>
+            </div>
+            <div class="btns">
+                <button class="btn">Delete</button>
+                <button class="btn">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="filters col">
+            <h4>Dealers Search</h4>
+        </div>
+        
+        <div id="table"></div>
+    </div>
+    <script src="/assets/js/cash.min.js"></script>
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/dealers.js"></script>
+</body>
+</html>

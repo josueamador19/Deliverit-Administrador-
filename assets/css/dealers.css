@@ -1,0 +1,180 @@
+.container {
+    padding: 8px 32px;
+}
+
+.Search {
+    width: 70%;
+    padding: 2px;
+    outline: 1px solid rgba(128, 128, 128, 0.452);
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.Search input {
+    width: 70%;
+    border: none;
+    padding: 9px 16px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.Search input:focus {
+    outline: none;
+}
+
+.btn {
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 9px 16px;
+    color: #00002C;
+    border: none;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    outline: 1px solid rgba(128, 128, 128, 0.637);
+}
+
+.btnAct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.editBtn {
+    background-color: #3648CE;
+    color: #fff;
+}
+.activeBtn {
+    display: flex;
+    align-items: center;
+    background-color: #4AA746;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+.desactiveBtn {
+    display: flex;
+    align-items: center;
+    background-color: #DC3B45;
+    color: #fff;
+}
+
+.desactiveBtn > svg, .activeBtn > svg {
+    padding-right: 4px;
+}
+
+.gridjs-td {
+    word-wrap: break-word;
+}
+
+#modalDealers, #modalOrders {
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.26);
+    display: none;
+}
+.gridjs, .gridjs-container {
+    box-sizing: border-box !important;
+    width: 99% !important;
+}
+
+#modalOrders {
+    z-index: 999;
+    display: none;
+}
+
+#modalDealers > .card {
+    padding: 32px;
+    background-color: #fff;
+    border-radius: 20px;
+    max-height: 70%;
+    max-width: 80%;
+    position: relative;
+}
+.id {
+    font-weight: bold;
+    margin: 8px 0px;
+}
+.HDinfoCustomer {
+    justify-content: space-between;
+}
+.HDinfoCustomer > .row:nth-child(1) {
+    margin-right: 8px;
+}
+label {
+    margin-right: 8px;
+}
+
+input { 
+    border: none;
+    border-radius: 16px;
+    padding: 8px 16px;
+    background: #00002c1f;
+}
+
+.orders {
+    max-height: 60%;
+    overflow-y: scroll;
+}
+
+
+.btns {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btns button:nth-child(1), .DLCat {
+    background-color: #DC3B45;
+    color: #fff;
+    margin: 0 4px;
+}
+.btns button:nth-child(2) {
+    background-color: #4AA746;
+    color: #fff;
+    margin: 0 4px;
+}
+
+.iconClose {
+    position: absolute;
+    right: 16px;
+    top: 8px;
+}
+.iconClose:hover {
+    cursor: pointer;
+}
+.pr {
+    font-size: 0.7rem;
+    padding: 8px 0px;
+}
+.pr > img {
+    max-width: 30%;
+    height: auto;
+}
+.price {
+    text-align: right;
+}
+.infoPr {
+    flex: 3;
+}
+#modalOrders > .card {
+    padding: 32px;
+    background-color: #fff;
+    border-radius: 20px;
+    height: 60%;
+    max-height: 60%;
+    max-width: 80%;
+    position: relative;
+}
+.orderProducts {
+    height: 70%;
+    overflow-y: scroll !important;
+}
