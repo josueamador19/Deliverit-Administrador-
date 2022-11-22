@@ -67,7 +67,7 @@
 
 #modalOrders {
     z-index: 999;
-    display: flex;
+    display: none;
 }
 
 #modalCustomer > .card {
