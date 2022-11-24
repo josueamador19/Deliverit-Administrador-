@@ -13,215 +13,53 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&family=Lexend&family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/theme.css">
-    <script src="/assets/fontAwesome/js/all.js"></script>
     <style>
-        .colorram {
-            color: #3648ce70;
+        .cntainer {
+            height: calc(100% - 56px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 4rem;
         }
-        .Chart {
-            border-radius: 20px;
-            box-sizing: border-box;
+        .info {
+            font-size: 1.3rem;
+            color: grey;
         }
-        .chart-container {
-            height: min-content;
-            border-radius: 20px;
-            border-radius: 50px;
-            background: #fff;
-            box-shadow:  20px 20px 60px #bebebe,
-                        -20px -20px 60px #ffffff;
-        }
-        .data-container{
-            margin-top: 16px !important;
-            padding-bottom: 20px;
-            position: relative; 
-            width:37vw;
-            background-color: #fff;
-            margin: 1%;
-            box-sizing: border-box;
+        .server {
+            font-size: 1rem;
             text-align: center;
-            border-radius: 20px;
-            border-radius: 50px;
-            background: #fff;
-            box-shadow:  20px 20px 60px #bebebe,
-                        -20px -20px 60px #ffffff;
         }
-        .item {
-            margin: 4px 20px;
-            box-sizing: border-box;
-            border-bottom: 1px solid rgba(128, 128, 128, 0.233);
+        .error {
+            color: red;
         }
-        .fa-heart-circle-check {
-            color: rgb(146, 0, 0);
-            font-size: 1.4rem;
-        }
-        .fa-user {
-            color: #3648ce;
-            font-size: 1.4rem;
-        }
-        .item > .col {
-            margin-left: 16px;
-            text-align: left;
-            flex: 4;
+        .done {
+            color: green;
         }
     </style>
 </head>
 <body>
-    <div class="row" style="justify-content: space-around;">
-        <div class="chart-container" style="position: relative; width:50vw">
-            <canvas id="myChart" class="Chart"></canvas>
-        </div>
-        <div class="chart-container" style="position: relative; width:25vw">
-            <canvas id="myChartPie" class="Chart"></canvas>
-        </div>
+    <div class="cntainer">
+        <img width="20%" src="https://deliverit-cdn.netlify.app/assets/svg/logo.svg" alt="">
+        <div class="deliver">Deliver<span class="nameit">it</span></div>
+        <span class="info">Dashboard administration</span>
+        <span class="server">Server status: <br><span id="serverStatus"></span></span>
     </div>
-    <div class="row" style="justify-content: space-around;">
-        <div class="data-container">
-            <h3>Top Products</h3>
-            <div id="products">
-                
-            </div>
-        </div>
-        <div class="data-container">
-            <h3>Top Delivery man</h3>
-            <div id="DM">
-            </div>
-        </div>
-    </div>
-
-    <script src="/assets/js/cash.min.js"></script>
-    <script src="/assets/js/jquery.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script>
-        //line
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const labels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'Octuber',
-            'November',
-            'December'
-        ];
-
-        const data = {
-            labels: labels,
-            datasets: [{
-            label: 'annual sales',
-            backgroundColor: '#3648ce70',
-            borderColor: '#3648CE',
-            borderWidth: 3,
-            fill: 'start',
-            tension: 0.01,
-            data: [5, 10, 5, 2, 20, 30, 45, 30, 40, 39, 20, 55],
-            }],
-        };
-        const config = {
-            type: 'line',
-            data: data,
-            options: {
-                plugins: {
-                    legend: {
-                        labels: {
-                            font: {
-                                size: 14
-                            }
-                        }
-                    },
-                    
-                },
-                interaction: {
-                    intersect: false,
-                }
+        const serverStatus = document.getElementById('serverStatus');
+        const server = "http://localhost:3000";
+        const xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE && this.status === 200) {
+                serverStatus.innerHTML = server + ' - <span class="done">Ready</span>';
             }
-        };
-        const myChart = new Chart(
-            document.getElementById('myChart'),
-            config
-        );
-        
-        //pie
-        const ctxPie = document.getElementById('myChartPie').getContext('2d');
-        const dataPie = {
-            labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
-            datasets: [
-                {
-                label: 'Dataset 1',
-                data: [10, 8, 7, 3, 2],
-                backgroundColor: [
-                    '#FF6384',
-                    '#FF9F40',
-                    '#FFC234',
-                    '#4BC0C0',
-                    '#36A2EB',
-                ],
-                }
-            ]
-        };
-        const configPie = {
-            type: 'pie',
-            data: dataPie,
-            options: {
-                responsive: true,
-                plugins: {
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: 'Best Stores'
-                }
-                }
-            },
-        };
-        const myChartPie = new Chart(
-            document.getElementById('myChartPie'),
-            configPie
-        );
-        let productsTOP = [];
-        let dealerTOP = [];
-        for (let i = 5; i > 0; i--) {
-            productsTOP.push({
-                name: 'product '+i,
-                data: 'data',
-                sales: Math.floor(Math.random()*i)+i*20
-            })
-            dealerTOP.push({
-                name: 'name '+i,
-                data: 'data',
-                ship: Math.floor(Math.random()*i)+i*10
-            })
-        }
-        productsTOP.forEach(product => {
-            $('#products').append(
-                `<div class="item row center-y">
-                    <i class="fa-solid fa-heart-circle-check"></i>
-                    <div class="col">
-                        <strong>${product.name}</strong>
-                        <span>${product.data}</span>
-                    </div>
-                    <span>${product.sales}</span>
-                </div>`
-            )
+            console.log(this);
+            if (this.readyState === 4 && this.status === 0) {
+                serverStatus.innerHTML = server + ' - <span class="error">Error</span>';
+            }
         });
-        dealerTOP.forEach(dealer => {
-            $('#DM').append(
-                `<div class="item row center-y">
-                    <i class="fa-solid fa-user"></i>
-                    <div class="col">
-                        <strong>${dealer.name}</strong>
-                        <span>${dealer.data}</span>
-                    </div>
-                    <span>${dealer.ship}</span>
-                </div>`
-            )
-        });
+        xhr.open("GET", server + "/admin/");
+        xhr.send();
     </script>
 </body>
 </html>

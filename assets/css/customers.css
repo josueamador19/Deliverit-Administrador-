@@ -64,7 +64,9 @@
     box-sizing: border-box !important;
     width: 99% !important;
 }
-
+.dataTableCS{
+    word-wrap: break-word;
+}
 #modalOrders {
     z-index: 999;
     display: none;
