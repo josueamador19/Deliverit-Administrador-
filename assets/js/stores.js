@@ -115,6 +115,8 @@ function viewModalPro(store) {
         idStore = stores[ind]._id;
         $('#namePr').val(stores[ind]['name']);
         $("#categoriesStore").val(stores[ind]['category'].id);
+        $('#latStore').val(stores[indexStore]['location']['lat']);
+        $('#lngStore').val(stores[indexStore]['location']['lng']);
         $('#logoPr').val(stores[ind]['logo'])
         $('#previewLogo').attr("src",stores[ind]['logo'])
         $('#bannerPr').val(stores[ind]['banner'])
@@ -241,6 +243,10 @@ function saveEditStore() {
             name: $('#namePr').val(),
             logo: $('#logoPr').val(),
             banner: $('#bannerPr').val(),
+            location: {
+                lat: $('#latStore').val(),
+                lng: $('#lngStore').val()
+              },
             category: $('#categoriesStore').val(), }).done(function (response) {
                 renderStores()
             }).fail(function(xhr, status, res) {
@@ -252,6 +258,10 @@ function saveEditStore() {
                 "name": $('#namePr').val(),
                 "logo": $('#logoPr').val(),
                 "banner": $('#bannerPr').val(),
+                "location": {
+                    "lat": $('#latStore').val(),
+                    "lng": $('#lngStore').val()
+                  },
                 "category": $('#categoriesStore').val(), }
         const settings = {
                 "async": true,
