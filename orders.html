@@ -43,27 +43,19 @@
             <div class="assigRoundsman">
                 <h5>Assign delivery man</h5>
                 <div class="row">
-                    <input type="text" value="Roundsman 1" id="search" placeholder="Name, Email, Tel or ID">
-                    <button>Search</button>
+                    <input type="text" id="searchRoundsman" placeholder="Name, Email, Tel or ID">
+                    <button onclick="searchRoundsman()">Search</button>
                 </div>
                 <div class="row">
                     <table id="SR">
                         <tr>
-                            <th>ID</th>
                             <th>Name</th>
                             <th>Tel</th>
                             <th>Email</th>
-                            <th>Status</th>
+                            <th>Active</th>
                         </tr>
                         <tbody id="resultSearch">
-                            <tr>
-                                <th>34253</th>
-                                <th>Roundsman 1</th>
-                                <th>94526871</th>
-                                <th>Roundsman1@deliverit.com</th>
-                                <th>available</th>
-                                <th><button>Assign</button></th>
-                            </tr>
+                           
                         </tbody>
                     </table>
                     <div id="mapa"></div>
@@ -82,30 +74,41 @@
                         <i class="fa-solid fa-box"></i>
                     </div>
                     <div class="col">
-                        <span id="allcount">47</span>
+                        <span id="allcount">0</span>
                         <span>All orders</span>
                     </div>
                 </div>
             </div>
             <div class="filter" data-filter="Received" onclick="changeFilter(this)">
                 <div class="row center-y">
+                    <div class="icon icon5">
+                        <i class="fa-solid fa-inbox"></i>
+                    </div>
+                    <div class="col">
+                        <span id="receivedcount">0</span>
+                        <span>Received</span>
+                    </div>
+                </div>
+            </div>
+            <div class="filter" data-filter="Preparing" onclick="changeFilter(this)">
+                <div class="row center-y">
                     <div class="icon icon2">
                         <i class="fa-solid fa-box-tissue"></i>
                     </div>
                     <div class="col">
-                        <span id="pendingcount">47</span>
-                        <span>Pending</span>
+                        <span id="pendingcount">0</span>
+                        <span>Preparing</span>
                     </div>
                 </div>
             </div>
-            <div class="filter" data-filter="On the way" onclick="changeFilter(this)">
+            <div class="filter" data-filter="OnTheWay" onclick="changeFilter(this)">
                 <div class="row center-y">
                     <div class="icon icon3">
                         <i class="fa-solid fa-truck-ramp-box"></i>
                     </div>
                     <div class="col">
-                        <span id="otwcount">47</span>
-                        <span>On the way</span>
+                        <span id="otwcount">0</span>
+                        <span>OnTheWay</span>
                     </div>
                 </div>
             </div>
@@ -115,7 +118,7 @@
                         <i class="fa-solid fa-box-open"></i>
                     </div>
                     <div class="col">
-                        <span id="deliveredcount">47</span>
+                        <span id="deliveredcount">0</span>
                         <span>Delivered</span>
                     </div>
                 </div>

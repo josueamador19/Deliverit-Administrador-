@@ -47,7 +47,7 @@
             <div onclick="$('#modalDealers').css('display', 'none')" class="iconClose">
                 <i class="fa-solid fa-xmark"></i>
             </div>
-            <center class="id">ID roundsman: <span id="ID">9781233</span></center>
+            <center class="id">ID roundsman: <span id="ID"></span></center>
             <div class="row HDinfoCustomer">
                 <div class="row">
                     <label for="nameroundsman">Name:</label>
@@ -62,13 +62,9 @@
                     <input type="text" id="emailroundsman">
                 </div>
             </div>
-            <div class="orders">
-                <h3>Orders</h3>
-                <div id="orders"></div>
-            </div>
             <div class="btns">
-                <button class="btn">Delete</button>
-                <button class="btn">Save</button>
+                <button onclick="deleteRM()" class="btn">Delete</button>
+                <button onclick="editRM()" class="btn">Save</button>
             </div>
         </div>
     </div>

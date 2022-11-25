@@ -2,45 +2,14 @@ let ordersData = [];
 let dealersData = [];
 
 (async ()=>{
-    const status = ['Received', 'On the way', 'Delivered'];
-    const names = ['James','Robert','John','Michael','David','William','Richard','Joseph','Thomas','Charles','Christopher','Steven']
-    for (let i = 0; i < 10; i++) {
-        const name1 = names[Math.floor(Math.random()*names.length)]
-        const name2 = names[Math.floor(Math.random()*names.length)]
-        ordersData.push({
-            id: Math.floor(Math.random() * 90000)+10000,
-            date: '10:20 - 31/10/2022',
-            status: status[Math.floor(Math.random()*3)],
-            client: {
-                name: name1,
-                email: name1+'@deliverit.com',
-                tel: Math.floor(Math.random() * 14000000)+86000000,
-            },
-            roundman: {
-                name: name2,
-                email: name2+'@deliverit.com',
-                tel: Math.floor(Math.random() * 14000000)+86000000,
-            },
-            service: Number(Math.random() * 14).toFixed(2),
-            products: [
-                {
-                    img: '/assets//img/tmp/image_2022-10-12_221845364-removebg-preview.png',
-                    name: 'Burger',
-                    store: 'McDonalds',
-                    price: 12.99
-                }
-            ]
-        })
-        
-    }
-    dealersData.push({
-        id: Math.floor(Math.random() * 100)+1,
-        name:'roundsman '+0,
-        email: 'roundsman'+0+'@deliverit.com',
-        tel: Math.floor(Math.random() * 14000000)+86000000,
-        status: 'disabled',
-    })
-    renderTable()
+    const options = {method: 'GET'}
+    fetch('http://localhost:3000/admin/history', options)
+    .then((response) => response.json())
+    .then((data) => {
+        ordersData = data
+        renderTable()   
+    });
+    
 })();
 
 function changeFilter(filter) {
@@ -54,8 +23,8 @@ function changeFilter(filter) {
             <tr>
             <td>${order.id}</td>
             <td>${order.client.email}</td>
-            <td>${order.roundman.email}</td>
-            <td>$1${order.service}</td>
+            <td>${order.dealer.email}</td>
+            <td>$${order.service}</td>
             <td>${order.status}</td>
             <td><button onclick="viewModalOrder(this)" data-id="${order.id}" class="btn"><i class="fa-solid fa-receipt"></i></button></td>
         </tr>
@@ -65,14 +34,18 @@ function changeFilter(filter) {
 }
 
 function renderTable() {
-    let pending = 0;
+    let Received = 0;
+    let Preparing = 0;
     let OTW = 0;
     let delivered = 0;
     ordersData.forEach(order => {
         if (order.status == 'Received') {
-            pending++
+            Received++
         }
-        if (order.status == 'On the way') {
+        if (order.status == 'Preparing') {
+            Preparing++
+        }
+        if (order.status == 'OnTheWay') {
             OTW++
         }
         if (order.status == 'Delivered') {
@@ -82,15 +55,16 @@ function renderTable() {
         <tr>
         <td>${order.id}</td>
         <td>${order.client.email}</td>
-        <td>${order.roundman.email}</td>
-        <td>$1${order.service}</td>
+        <td>${order.dealer.email}</td>
+        <td>$${order.service}</td>
         <td>${order.status}</td>
-        <td><button onclick="viewModalOrder(this)" data-id="${order.id}" class="btn"><i class="fa-solid fa-receipt"></i></button></td>
+        <td><button id="orderModalBTN" onclick="viewModalOrder(this)" data-id="${order.id}" class="btn"><i class="fa-solid fa-receipt"></i></button></td>
     </tr>
         `)
     });
-    $('#allcount').html((pending + OTW + delivered))
-    $('#pendingcount').html(pending)
+    $('#allcount').html((Received + Preparing + OTW + delivered))
+    $('#receivedcount').html(Received)
+    $('#pendingcount').html(Preparing)
     $('#otwcount').html(OTW)
     $('#deliveredcount').html(delivered)
 }
@@ -105,15 +79,71 @@ function viewModalOrder(orderRef) {
     $('#nameClient').html(order.client.name)
     $('#emailClient').html(order.client.email)
     $('#telClient').html(order.client.tel)
-    $('#nameRoundsman').html(order.roundman.name)
-    $('#emailRoundsman').html(order.roundman.email)
-    $('#telRoundsman').html(order.roundman.tel)
+    $('#nameRoundsman').html(order.dealer.name)
+    $('#emailRoundsman').html(order.dealer.email)
+    $('#telRoundsman').html(order.dealer.tel)
 
+    $('#modalOrder').css('display', 'flex')
+    $('.assigRoundsman').css('display', 'none')
     if (order.status == 'Received') {
         $('.assigRoundsman').css('display', 'inline')
         $('#nameRoundsman').html('not assigned')
         $('#emailRoundsman').html('not assigned')
         $('#telRoundsman').html('not assigned')
     }
-    $('#modalOrder').css('display', 'flex')
+}
+
+function searchRoundsman() {
+    const data = $('#searchRoundsman').val()
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:3000/admin/searchRoundsman/"+data,
+        "method": "get",
+        beforeSend: function(xhr){
+            xhr.withCredentials = true;
+         },}
+    
+    $.ajax(settings).done(function (response) {
+        $('#resultSearch').html('')
+        response.forEach(rm => {
+            const btn = rm.active ? `<button data-id="${rm._id}" onClick="assignedRM(this)" id="btnAssigned">Assign</button>`: '';
+            $('#resultSearch').append( ` <tr>
+            <th>${rm.name}</th>
+            <th>${rm.phoneNumber}</th>
+            <th>${rm.email}</th>
+            <th>${rm.active}</th>
+            <th>${btn}</th>
+        </tr>`)
+        })
+    });
+   
+}
+
+function assignedRM(btn) {
+    const data = {
+        idDealer: $(btn).attr('data-id'),
+        id: $('#orderID').html()
+    }
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:3000/admin/assigned",
+        "method": "PUT",
+        beforeSend: function(xhr){
+            xhr.withCredentials = true;
+         },
+        "data": data}
+    
+    $.ajax(settings).done(function (response) {
+        $('#modalOrder').css('display', 'none')
+        const options = {method: 'GET'}
+        fetch('http://localhost:3000/admin/history', options)
+        .then((response) => response.json())
+        .then((data) => {
+            ordersData = data
+            renderTable()   
+        });
+        
+    });
 }
