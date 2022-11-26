@@ -1,5 +1,5 @@
 let clients = [];
-const server = "http://localhost:3000";
+const server = "https://deliverit-backend.vercel.app";
 
 (async ()=>{
     renderClients()
@@ -151,7 +151,7 @@ function updateClient() {
     const settings = {
             "async": true,
             "crossDomain": true,
-            "url": "http://localhost:3000/admin/updateClient",
+            "url": "https://deliverit-backend.vercel.app/admin/updateClient",
             "method": "PUT",
             data: data}
           
@@ -171,7 +171,7 @@ function deleteClient() {
     const settings = {
             "async": true,
             "crossDomain": true,
-            "url": "http://localhost:3000/admin/deleteClient",
+            "url": "https://deliverit-backend.vercel.app/admin/deleteClient",
             "method": "PUT",
             data: data}
           

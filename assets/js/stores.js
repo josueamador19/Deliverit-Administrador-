@@ -11,7 +11,7 @@ async function renderCategories() {
     let settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:3000/admin/categories",
+        "url": "https://deliverit-backend.vercel.app/admin/categories",
         "method": "GET",
         "headers": {}
     };
@@ -37,7 +37,7 @@ async function renderStores() {
     settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:3000/admin/stores",
+        "url": "https://deliverit-backend.vercel.app/admin/stores",
         "method": "GET",
         "headers": {}
       };
@@ -196,7 +196,7 @@ function addCat() {
     if (nameCat == '' || colorCat == '' || iconCat == '') {
         return
     }
-    $.post("http://localhost:3000/admin/newCategory", {
+    $.post("https://deliverit-backend.vercel.app/admin/newCategory", {
         name: nameCat,
         color: colorCat,
         icon: iconCat, }).done(function (response) {
@@ -223,7 +223,7 @@ function deleteCategory() {
 const settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:3000/admin/deleteCategory",
+        "url": "https://deliverit-backend.vercel.app/admin/deleteCategory",
         "method": "DELETE",
         data: data}
       
@@ -239,7 +239,7 @@ $.ajax(settings).done(function (response) {
 
 function saveEditStore() {
     if (indexStore == null) {
-          $.post("http://localhost:3000/admin/newStore", {
+          $.post("https://deliverit-backend.vercel.app/admin/newStore", {
             name: $('#namePr').val(),
             logo: $('#logoPr').val(),
             banner: $('#bannerPr').val(),
@@ -266,7 +266,7 @@ function saveEditStore() {
         const settings = {
                 "async": true,
                 "crossDomain": true,
-                "url": "http://localhost:3000/admin/updateStore",
+                "url": "https://deliverit-backend.vercel.app/admin/updateStore",
                 "method": "PUT",
                 data: data}
               
@@ -280,7 +280,7 @@ function saveEditStore() {
 
 async function saveProduct() {
     if (indexProduct == null) {
-        await $.post("http://localhost:3000/admin/newProduct", {
+        await $.post("https://deliverit-backend.vercel.app/admin/newProduct", {
             "img": $('#imgPr').val(),
             "price": $('#pricePr').val(),
             "description": $('#descriptionPr').val(), 
@@ -301,7 +301,7 @@ async function saveProduct() {
       const settings = {
               "async": true,
               "crossDomain": true,
-              "url": "http://localhost:3000/admin/updateProduct",
+              "url": "https://deliverit-backend.vercel.app/admin/updateProduct",
               "method": "PUT",
               data: data}
             
@@ -356,7 +356,7 @@ function deleteStore() {
 const settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:3000/admin/deleteStore",
+        "url": "https://deliverit-backend.vercel.app/admin/deleteStore",
         "method": "DELETE",
         data: data}
       
@@ -373,7 +373,7 @@ function deleteProduct() {
 const settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:3000/admin/deleteProduct",
+        "url": "https://deliverit-backend.vercel.app/admin/deleteProduct",
         "method": "DELETE",
         data: data}
       

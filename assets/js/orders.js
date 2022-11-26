@@ -3,7 +3,7 @@ let dealersData = [];
 
 (async ()=>{
     const options = {method: 'GET'}
-    fetch('http://localhost:3000/admin/history', options)
+    fetch('https://deliverit-backend.vercel.app/admin/history', options)
     .then((response) => response.json())
     .then((data) => {
         ordersData = data
@@ -98,7 +98,7 @@ function searchRoundsman() {
     const settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:3000/admin/searchRoundsman/"+data,
+        "url": "https://deliverit-backend.vercel.app/admin/searchRoundsman/"+data,
         "method": "get",
         beforeSend: function(xhr){
             xhr.withCredentials = true;
@@ -128,7 +128,7 @@ function assignedRM(btn) {
     const settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:3000/admin/assigned",
+        "url": "https://deliverit-backend.vercel.app/admin/assigned",
         "method": "PUT",
         beforeSend: function(xhr){
             xhr.withCredentials = true;
@@ -138,7 +138,7 @@ function assignedRM(btn) {
     $.ajax(settings).done(function (response) {
         $('#modalOrder').css('display', 'none')
         const options = {method: 'GET'}
-        fetch('http://localhost:3000/admin/history', options)
+        fetch('https://deliverit-backend.vercel.app/admin/history', options)
         .then((response) => response.json())
         .then((data) => {
             ordersData = data

@@ -2,7 +2,7 @@ let dealersData = [];
 let orders = [];
 (async ()=>{
     const options = {method: 'GET'}
-    fetch('http://localhost:3000/admin/allTheRoundsman', options)
+    fetch('https://deliverit-backend.vercel.app/admin/allTheRoundsman', options)
     .then((response) => response.json())
     .then((data) => {
         dealersData = data
@@ -95,7 +95,7 @@ function editStatus(data) {
     const settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:3000/admin/roundsmanStatus",
+        "url": "https://deliverit-backend.vercel.app/admin/roundsmanStatus",
         "method": "PUT",
         beforeSend: function(xhr){
             xhr.withCredentials = true;
@@ -104,7 +104,7 @@ function editStatus(data) {
     
     $.ajax(settings).done(function (response) {
         const options = {method: 'GET'}
-        fetch('http://localhost:3000/admin/allTheRoundsman', options)
+        fetch('https://deliverit-backend.vercel.app/admin/allTheRoundsman', options)
         .then((response) => response.json())
         .then((data) => {
             dealersData = data
@@ -128,7 +128,7 @@ function editRM() {
     const settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:3000/admin/updateDealer",
+        "url": "https://deliverit-backend.vercel.app/admin/updateDealer",
         "method": "PUT",
         beforeSend: function(xhr){
             xhr.withCredentials = true;
@@ -137,7 +137,7 @@ function editRM() {
     
     $.ajax(settings).done(function (response) {
         const options = {method: 'GET'}
-        fetch('http://localhost:3000/admin/allTheRoundsman', options)
+        fetch('https://deliverit-backend.vercel.app/admin/allTheRoundsman', options)
         .then((response) => response.json())
         .then((data) => {
             $('#modalDealers').css('display', 'none');
@@ -156,7 +156,7 @@ function deleteRM() {
     const settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:3000/admin/deleteRoundsman",
+        "url": "https://deliverit-backend.vercel.app/admin/deleteRoundsman",
         "method": "DELETE",
         beforeSend: function(xhr){
             xhr.withCredentials = true;
@@ -165,7 +165,7 @@ function deleteRM() {
     
     $.ajax(settings).done(function (response) {
         const options = {method: 'GET'}
-        fetch('http://localhost:3000/admin/allTheRoundsman', options)
+        fetch('https://deliverit-backend.vercel.app/admin/allTheRoundsman', options)
         .then((response) => response.json())
         .then((data) => {
             $('#modalDealers').css('display', 'none');
