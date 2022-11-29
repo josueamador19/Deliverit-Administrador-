@@ -131,7 +131,7 @@ async function viewModalOrder(btnOrder) {
                     <img width="20%" src="${product.img}" alt="">
                     <div class="col infoPr">
                         <strong>${product.name}</strong><br>
-                        <span>${product.store}</span>
+                        <span>${product.store.name}</span>
                     </div>
                     <div class="col center-xy price">
                         <span>$${product.price}</span>
