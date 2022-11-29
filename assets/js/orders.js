@@ -38,6 +38,7 @@ function renderTable() {
     let Preparing = 0;
     let OTW = 0;
     let delivered = 0;
+    $('#tableBody').html(" ");
     ordersData.forEach(order => {
         if (order.status == 'Received') {
             Received++
@@ -51,6 +52,7 @@ function renderTable() {
         if (order.status == 'Delivered') {
             delivered++
         }
+        
         $('#tableBody').append(`
         <tr>
         <td>${order.id}</td>
@@ -132,7 +134,7 @@ function assignedRM(btn) {
         "method": "PUT",
         beforeSend: function(xhr){
             xhr.withCredentials = true;
-         },
+        },
         "data": data}
     
     $.ajax(settings).done(function (response) {
